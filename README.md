@@ -1,10 +1,13 @@
+<head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</head>
 
 
 <!-- Logo -->
-<img src="" alt="OPEN-SCHOOL" width="100%" height="250"/>
+<img src="https://raw.githubusercontent.com/yaarian-om/SERVER/a700d4c135a558cce62b85dba7225760c459197d/1010110010/Interstellar-Library/Logo.svg" alt="Interstellar Library Logo" width="100%" height="250"/>
 <!-- Badges => Clone_Count, Platform=windows, Stars, DataBase  -->
  <p align="center">
     <img src="https://img.shields.io/badge/website-000000?style=for-the-badge&logo=About.&logoColor=white"alt="Web"/>
@@ -23,11 +26,11 @@
    
 <p align="center">
   <h3><b>Used in Project:</b></h3>
-    <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js"/>
-    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
-    <img src=" 	https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="Tailwind CSS"/>
- <img src="https://img.shields.io/badge/Firefox_Browser-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white" alt="Fire-Fox"/>
+    <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" class="d-inline-block"/>
+    <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" class="d-inline-block"/>
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" class="d-inline-block"/>
+    <img src=" 	https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="Tailwind CSS" class="d-inline-block"/>
+ <img src="https://img.shields.io/badge/Firefox_Browser-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white" alt="Fire-Fox" class="d-inline-block"/>
  
  </p>
 <!-- Short Description -->
@@ -61,6 +64,10 @@
         <td class="text-center">Md. Najmus Shakib Khasru Parvez</td>
         <td class="text-center">20-43548-1</td>
     </tr>
+    <tr>
+        <td class="text-center">MD Mohituzzaman Bhuiyan</td>
+        <td class="text-center">20-42546-1</td>
+    </tr>
     </table>
 </p>
 
@@ -89,7 +96,7 @@ git clone https://github.com/yaarian-om/Interstellar_Library
 - Download
   -  To download all the folders together manually, press download from Code, shown below
 <p align="center">
-    <img src="" alt="Interstellar_Library Manual Download" width="50%" height="250"/>
+    <img src="https://raw.githubusercontent.com/yaarian-om/SERVER/main/1010110010/Interstellar-Library/Interstellar_Library_Manual_Download.webp" alt="Interstellar_Library Manual Download" width="50%" height="250"/>
 </p>
 
 

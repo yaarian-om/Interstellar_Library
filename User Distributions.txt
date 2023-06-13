@@ -1,0 +1,4 @@
+Seller => Sudipta
+Customer => Samrat
+Admin => Mahmud
+Moderator => Mohit
