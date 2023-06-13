@@ -1,0 +1,21 @@
+Before doing anything:
+------------------------
+git pull origin main
+========================
+
+While uploading the Code:
+-------------------------
+git add .
+git commit -m "Tell what you are submitting"
+git push origin [your_branch_name]
+===================================
+
+Create a pull request:
+-----------------------
+gh pr create
+=======================
+
+Merge the Pull request:
+------------------------
+gh pr merge
+========================
