@@ -2,8 +2,9 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
+import { AddBooksDTO } from './seller.dto';
 
 @Controller('seller')
 export class SellerController {
@@ -18,7 +19,9 @@ export class SellerController {
     }
 
     @Post('/add_books')
-    AddBooks(@Query() book_info: any) {
+    @UsePipes(new ValidationPipe())
+    AddBooks(@Body() book_info: AddBooksDTO):object {
+        // console.log(book_info); // Working
         return this.sellerService.AddBooks(book_info);
     }
 
