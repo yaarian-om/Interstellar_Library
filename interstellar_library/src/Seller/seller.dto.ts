@@ -5,7 +5,7 @@ export class AddBooksDTO {
 
     @IsNumber({},{message:"ID must be in Integer Format"})
     @Min(0,{message:"ID must be greater or equal than 0"})
-    Id : number;
+    Id : number = -1;
 
     @IsString({message:"Book Name must be in Alphabetical Format"})
     @Matches( /^[a-zA-Z\s-:]+$/, {message:"Book Name must be in Alphabetical Format"})
@@ -13,10 +13,10 @@ export class AddBooksDTO {
 
     @IsNumber({},{message:"ICBN is can only be Numbers"})
     @Min(0,{message:"ICBN number can not be negative"})
-    ICBN : number;
+    ICBN : number = -1;
     
     @IsNumber({},{message:"Price Can not be textual or Alphabetical Format"})
     @Min(0,{message:"Price can not be negative"})
-    Price : number;
+    Price : number = -1;
 
 }

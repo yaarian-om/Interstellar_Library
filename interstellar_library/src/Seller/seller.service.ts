@@ -8,6 +8,8 @@ import { AddBooksDTO } from './seller.dto';
 @Injectable()
 export class SellerService {
     
+    
+    
 
     current_book_info : AddBooksDTO
 
@@ -44,8 +46,36 @@ export class SellerService {
         }
     }
 
+    UpdateBookInfo(s_id:number, updated_data: AddBooksDTO): object {
+
+        // console.log(s_id); // Working
+        // console.log(updated_data); // Working
+        // console.log(this.current_book_info); // Working
+
+
+        if((s_id == this.current_book_info.Id) && (s_id >= 0 ) && (this.current_book_info.Id >= 0)){
+            this.current_book_info = updated_data;
+            return this.current_book_info;
+        }else{
+            return {"Error":"Book Not Found"};
+        }
+
+    }
+
+    DeleteBookInfo(id: number): any {
+        if(id == this.current_book_info.Id){
+            return "Book id = "+id+" And the Book Deleted Successfully";
+        }else{
+            return {"Error":"Book Not Found. Failed to Delete"};
+        }
+       
+    }
+
+
 
     
+
+
 
 
 
