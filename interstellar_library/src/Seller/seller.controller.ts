@@ -25,6 +25,17 @@ export class SellerController {
         return this.sellerService.AddBooks(book_info);
     }
 
+    @Get('/books')
+    ViewAllBooks(): any{
+        return this.sellerService.ViewAllBooks();
+    }
+
+    @Get('/books/search_books')
+    ViewSingleBook(@Query() book_info:AddBooksDTO): AddBooksDTO{ 
+        // console.log(book_info); // Working
+        return this.sellerService.ViewSingleBook(book_info);
+    }
+    
 
 
 }
