@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Get, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
 import { AddBooksDTO } from './seller.dto';
 
@@ -35,7 +35,18 @@ export class SellerController {
         // console.log(book_info); // Working
         return this.sellerService.ViewSingleBook(book_info);
     }
+
+
+    @Put('/books/update_book_info/:id')
+    @UsePipes(new ValidationPipe())
+    UpdateBookInfo(@Param('id', ParseIntPipe) id:number, @Body() updated_data:AddBooksDTO): object{
+        return this.sellerService.UpdateBookInfo(id,updated_data);
+    }
     
 
+    @Delete('/books/delete_books/:id')
+    DeleteBookInfo(@Param('id', ParseIntPipe) id:number): number{
+        return this.sellerService.DeleteBookInfo(id);
+    }
 
 }
