@@ -4,7 +4,7 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
-import { AddBooksDTO } from './seller.dto';
+import { AddBooksDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 
 @Controller('seller')
 export class SellerController {
@@ -48,5 +48,28 @@ export class SellerController {
     DeleteBookInfo(@Param('id', ParseIntPipe) id:number): number{
         return this.sellerService.DeleteBookInfo(id);
     }
+
+    @Post('/feedbacks/send_feedback')
+    SendFeedback(@Body() feedback_info: FeedbackDTO): object{
+        return this.sellerService.SendFeedback(feedback_info);
+    }
+
+    @Get('/feedbacks')
+    ViewCustomerFeedback(): any{
+        return this.sellerService.ViewCustomerFeedback();
+        
+    }
+    
+    @Post('/logout/:id')
+    Logout(@Param('id', ParseIntPipe) id:number): object{
+        return this.sellerService.Logout(id);
+    }
+
+    @Post('/signup')
+    @UsePipes(new ValidationPipe())
+    Signup(@Body() seller_info: SellerDTO): object{
+        return this.sellerService.Signup(seller_info);
+    }
+
 
 }

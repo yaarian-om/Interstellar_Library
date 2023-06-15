@@ -1,4 +1,4 @@
-import { IsString, IsNumber, Matches, Min } from "class-validator";
+import { IsString, IsNumber, Matches, Min, IsEmail } from "class-validator";
 
 
 export class AddBooksDTO {
@@ -20,3 +20,51 @@ export class AddBooksDTO {
     Price : number = -1;
 
 }
+
+
+
+export class FeedbackDTO {
+
+
+    @IsEmail({}, {message:"Invalid Email"})
+    Mail : string;
+    Message : string;
+    Time: string;
+
+
+}
+
+export class SellerDTO{
+
+    @IsString({message:"Name must be in Alphabetical Format"})
+    @Matches( /^[a-zA-Z\s]+$/, {message:"You can not use any special characters or symbols in Name"})
+    Name: string;
+
+    @IsEmail({}, {message:"Invalid Email"})
+    Mail : string;
+
+    @IsNumber({},{message:"Password must be in Integer Format"})
+    @Min(0,{message:"Password must be greater or equal than 0"})
+    Password : number = -1;
+
+    @IsNumber({},{message:"Phone Number must be in Integer Format"})
+    @Min(0,{message:"Phone Number must be greater or equal than 0"})
+    Phone : number = -1;
+
+    @IsString({message:"Address must be in Alphabetical Format"})
+    @Matches( /^[a-zA-Z\s-:]+$/, {message:"Address must be in Alphabetical Format"})
+    Address: string;
+
+    @IsString({message:"City must be in Alphabetical Format"})
+    @Matches( /^[a-zA-Z\s-:]+$/, {message:"City must be in Alphabetical Format"})
+    City: string;
+
+    @IsNumber({},{message:"Zip Code must be in Integer Format"})
+    @Min(0,{message:"Zip Code must be greater or equal than 0"})
+    ZipCode : number = -1;
+
+    @IsString({message:"Country must be in Alphabetical Format"})
+    @Matches( /^[a-zA-Z\s-:]+$/, {message:"Country must be in Alphabetical Format"})
+    Country: string;
+
+    }
