@@ -3,15 +3,21 @@ https://docs.nestjs.com/providers#services
 */
 
 import { Injectable } from '@nestjs/common';
-import { AddBooksDTO } from './seller.dto';
+import { AddBooksDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 
 @Injectable()
 export class SellerService {
     
     
     
+    
+    
+    
+    
 
     current_book_info : AddBooksDTO
+    current_feedback_info : FeedbackDTO
+    current_seller_info : SellerDTO
 
     AddBooks(book_info: AddBooksDTO) : object {
         this.current_book_info = book_info;
@@ -72,8 +78,49 @@ export class SellerService {
     }
 
 
+    SendFeedback(feedback_info: FeedbackDTO): object {
+        const now: Date = new Date();
+        const options: Intl.DateTimeFormatOptions = { 
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: false,
+        };
+        const dateString: string = now.toLocaleString(undefined, options);
+        // console.log(dateString); // Working
+        feedback_info.Time = dateString;
 
-    
+        this.current_feedback_info = feedback_info;
+        return feedback_info;
+    }
+
+
+    ViewCustomerFeedback(): any {
+        if(this.current_feedback_info != null){
+            return this.current_feedback_info;
+        }
+        else{
+            return "No Feedbacks to show.";
+        }
+    }
+
+
+    Logout(id: number): any {
+        if(id == this.current_book_info.Id){ // Here I am using Book Id as Seller Id
+            return "Seller id = "+id+" And the Seller Logged Out Successfully";
+        }else{
+            return {"Error":"Seller Not Found. Failed to Logout"};
+        }
+    }
+
+
+    Signup(seller_info: SellerDTO): object {
+        this.current_seller_info = seller_info;
+        return seller_info;
+    }
 
 
 
