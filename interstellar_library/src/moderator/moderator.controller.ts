@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 import { ModeratorService } from "./moderator.service";
 
 @Controller('moderator')
@@ -8,5 +8,10 @@ export class ModeratorController {
     @Get()
     getHello(): string {
         return this.moderatorService.getHello();
+    }
+
+    @Get("/customerId/:id")
+    getModerator(@Param() id: number): any {
+        return this.moderatorService.getCustomerById(id);
     }
 }

@@ -5,4 +5,10 @@ export class ModeratorService {
     getHello(): string {
         return 'Hello Moderator!';
     }
+
+    getCustomerById(id:number): object {
+        return ({id: id, name: "Moderator"})
+    }
+        
+
 }
