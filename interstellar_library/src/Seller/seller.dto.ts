@@ -1,4 +1,4 @@
-import { IsString, IsNumber, Matches, Min, IsEmail } from "class-validator";
+import { IsString, IsNumber, Matches, Min, IsEmail, NotEquals } from "class-validator";
 
 
 export class AddBooksDTO {
@@ -19,6 +19,8 @@ export class AddBooksDTO {
     @Min(0,{message:"Price can not be negative"})
     Price : number = -1;
 
+    Image : string;
+
 }
 
 
@@ -36,15 +38,21 @@ export class FeedbackDTO {
 
 export class SellerDTO{
 
+    @IsNumber({},{message:"ID must be in Integer Format"})
+    @Min(0,{message:"ID must be greater or equal than 0"})
+    Id : number = -1;
+
     @IsString({message:"Name must be in Alphabetical Format"})
-    @Matches( /^[a-zA-Z\s]+$/, {message:"You can not use any special characters or symbols in Name"})
+    @Matches( /^[a-zA-Z\s.]+$/, {message:"You can not use any special characters or symbols in Name"})
     Name: string;
 
     @IsEmail({}, {message:"Invalid Email"})
     Mail : string;
 
-    @IsNumber({},{message:"Password must be in Integer Format"})
-    @Min(0,{message:"Password must be greater or equal than 0"})
+
+    @IsString()
+    @NotEquals('username', {message: 'Password must not be the same as your username'})
+    @NotEquals('email', {message: 'Password must not be the same as your email'})
     Password : number = -1;
 
     @IsNumber({},{message:"Phone Number must be in Integer Format"})
@@ -66,5 +74,7 @@ export class SellerDTO{
     @IsString({message:"Country must be in Alphabetical Format"})
     @Matches( /^[a-zA-Z\s-:]+$/, {message:"Country must be in Alphabetical Format"})
     Country: string;
+
+    Image : string;
 
     }
