@@ -30,12 +30,12 @@ export class ModeratorService {
     logout(): object {
         return ({message: "Logout"})
     }
-    updateCustomer(id:number, name:string): object {
-        return ({id: id, name: name})
+    updateCustomer(id:number, name:string, data:ModeratorDto): object {
+        return data;
     }
 
-    updateSeller(id:number, name:string): object {
-        return ({id: id, name: name})
+    updateSeller(id:number, name:string, data:ModeratorDto): object {
+        return data;
     }
 
     getCustomerFeedback(id:number): object {

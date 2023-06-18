@@ -47,13 +47,14 @@ export class ModeratorController {
     }
 
     @Put("/updateCustomer/:id/:name")
-    updateCustomer(@Param() id: number, @Param() name: string): any {
-        return this.moderatorService.updateCustomer(id, name);
+    updateCustomer(@Param() id: number, @Param() name: string, @Body() data:ModeratorDto): object {
+        console.log(data);
+        return this.moderatorService.updateCustomer(id, name, data);
     }
 
     @Put("/updateSeller/:id/:name")
-    updateSeller(@Param() id: number, @Param() name: string): any {
-        return this.moderatorService.updateSeller(id, name);
+    updateSeller(@Param() id: number, @Param() name: string, @Body() data:ModeratorDto): object {
+        return this.moderatorService.updateSeller(id, name, data);
     }
 
     @Put("/updateProfile/")
