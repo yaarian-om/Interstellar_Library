@@ -11,12 +11,12 @@ export class ModeratorController {
         return this.moderatorService.getHello();
     }
 
-    @Get("/customerId/:id")
+    @Get("/customerById/:id")
     getModerator(@Param() id: number): any {
         return this.moderatorService.getCustomerById(id);
     }
 
-    @Get("/sellerId/:id")
+    @Get("/sellerById/:id")
     getSeller(@Param() id: number): any {
         return this.moderatorService.getSellerById(id);
     }
