@@ -8,7 +8,7 @@ export class ModeratorService {
     }
 
     getCustomerById(id:number): object {
-        return ({id: id, name: "Moderator"})
+        return ({id: id, name: "Customer"})
     }
     
     getSellerById(id:number): object {
