@@ -72,6 +72,4 @@ export class ModeratorController {
     deleteAccount(@Param() id: number): any {
         return this.moderatorService.deleteAccount(id);
     }
-
-    
 }
