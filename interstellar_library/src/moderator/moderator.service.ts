@@ -23,8 +23,8 @@ export class ModeratorService {
         return ({id: 1, name: "Book"})
     }
 
-    login(email:string, password:string): any {
-        return ({email: email, password: password})
+    login(data:ModeratorDto): any {
+        return data.email + "\n " + data.password;
     }
 
     logout(): object {

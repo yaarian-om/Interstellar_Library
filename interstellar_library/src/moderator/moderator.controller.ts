@@ -36,9 +36,9 @@ export class ModeratorController {
         return this.moderatorService.getAllBooks();
     }
 
-    @Get("/login/:email/:password")
-    login(@Param() email: string, @Param() password: string): any {
-        return this.moderatorService.login(email, password);
+    @Get("/login/")
+    login(@Body() data:ModeratorDto): any {
+        return this.moderatorService.login(data);
     }
 
     @Get("/logout/")
