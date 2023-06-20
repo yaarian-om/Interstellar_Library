@@ -28,14 +28,11 @@ export class ModeratorService {
         return 'Hello Moderator!';
     }
 
-    getCustomerById(id:CustomerDto,data:CustomerDto): object {
-        if(data != null)
-            if(data.id == id.id)
-                return data;
-            else
-                return ({message: "Customer not found"})
-        else
-            return ({message: "Invalid Input"})
+    async getCustomerById(id): Promise<any> {
+     
+       
+        return this.customerRepository.findOne(id);
+      
     }
     
     getSellerById(id:SellerDto, data:SellerDto): object {
@@ -49,7 +46,7 @@ export class ModeratorService {
     }
 
     updateProfile(data: ModeratorDto): object {
-        return this.moderatorRepository.update(data.id, data);
+        return this.moderatorRepository.save(data);
     }
 
     getAllBooks(): object {

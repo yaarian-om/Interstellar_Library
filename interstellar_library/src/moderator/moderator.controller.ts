@@ -12,8 +12,8 @@ export class ModeratorController {
     }
 
     @Get("/customerById/:id")
-    getModerator(@Param() id: CustomerDto,@Body() data:CustomerDto): any {
-        return this.moderatorService.getCustomerById(id,data);
+    getModerator(@Param() id: number): any {
+        return this.moderatorService.getCustomerById(id);
     }
 
     @Get("/sellerById/:id")
