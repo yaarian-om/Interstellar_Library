@@ -1,22 +1,55 @@
-import { Injectable } from "@nestjs/common";
-import { ModeratorDto } from "./moderator.dto";
+import { Inject, Injectable } from "@nestjs/common";
+import { CustomerDto, ModeratorDto, SellerDto } from "./moderator.dto";
+import { BookEntity, CustomerEntity, ModeratorEntity, SellerEntity } from "./moderator.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+
+
+
 
 @Injectable()
 export class ModeratorService {
+    constructor(
+        @InjectRepository(ModeratorEntity)
+        private readonly moderatorRepository: Repository<ModeratorEntity>,
+        @InjectRepository(CustomerEntity)
+        private readonly customerRepository: Repository<CustomerEntity>,
+        @InjectRepository(SellerEntity)
+        private readonly sellerRepository: Repository<SellerEntity>,
+        @InjectRepository(BookEntity)
+        private readonly bookRepository: Repository<BookEntity>
+    ) {}
+    
+    customer_curr: CustomerDto;
+    seller_curr: SellerDto;
+    moderator_curr: ModeratorDto;
+
     getHello(): string {
         return 'Hello Moderator!';
     }
 
-    getCustomerById(id:number): object {
-        return ({id: id, name: "Customer"})
+    getCustomerById(id:CustomerDto,data:CustomerDto): object {
+        if(data != null)
+            if(data.id == id.id)
+                return data;
+            else
+                return ({message: "Customer not found"})
+        else
+            return ({message: "Invalid Input"})
     }
     
-    getSellerById(id:number): object {
-        return ({id: id, name: "Seller"})
+    getSellerById(id:SellerDto, data:SellerDto): object {
+        if(data != null)
+            if(data.id == id.id)
+                return data;
+            else 
+                return ({message: "Seller not found"})
+        else
+            return ({message: "Invalid Input"})
     }
 
     updateProfile(data: ModeratorDto): object {
-        return data;
+        return this.moderatorRepository.update(data.id, data);
     }
 
     getAllBooks(): object {
@@ -54,6 +87,6 @@ export class ModeratorService {
     }
 
     deleteAccount(id:number): object {
-        return ({id: id, name: "Account"})
+        return this.moderatorRepository.delete(id);
     }
 }

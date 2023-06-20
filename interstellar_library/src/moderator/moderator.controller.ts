@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ModeratorService } from "./moderator.service";
-import { ModeratorDto } from "./moderator.dto";
+import { CustomerDto, ModeratorDto, SellerDto } from "./moderator.dto";
 
 @Controller('moderator')
 export class ModeratorController {
@@ -12,13 +12,13 @@ export class ModeratorController {
     }
 
     @Get("/customerById/:id")
-    getModerator(@Param() id: number): any {
-        return this.moderatorService.getCustomerById(id);
+    getModerator(@Param() id: CustomerDto,@Body() data:CustomerDto): any {
+        return this.moderatorService.getCustomerById(id,data);
     }
 
     @Get("/sellerById/:id")
-    getSeller(@Param() id: number): any {
-        return this.moderatorService.getSellerById(id);
+    getSeller(@Param() id: SellerDto, @Body() data:SellerDto): any {
+        return this.moderatorService.getSellerById(id,data);
     }
 
     @Get("/customerFeedback/:id")
