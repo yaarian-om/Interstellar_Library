@@ -23,8 +23,11 @@ export class ModeratorService {
         return ({id: 1, name: "Book"})
     }
 
-    login(data:ModeratorDto): any {
-        return data.email + "\n " + data.password;
+    login(qry:ModeratorDto, data:ModeratorDto): string {
+        if(qry.email==data.email && qry.password==data.password)
+            return "Login Successful";
+        else
+            return "Invalid Credentials";
     }
 
     logout(): object {

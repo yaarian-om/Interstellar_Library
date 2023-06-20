@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ModeratorService } from "./moderator.service";
 import { ModeratorDto } from "./moderator.dto";
 
@@ -36,9 +36,16 @@ export class ModeratorController {
         return this.moderatorService.getAllBooks();
     }
 
-    @Get("/login/")
-    login(@Body() data:ModeratorDto): any {
-        return this.moderatorService.login(data);
+    //@Get("/login/:email/:password")
+    //login(@Param() email:string, @Param() password:string,@Body() data:ModeratorDto): any {
+    //    return this.moderatorService.login(email, password, data);
+    //}
+
+    @Post("/login/")
+    @UsePipes(new ValidationPipe())
+    login(@Query() qry:ModeratorDto,@Body() data:ModeratorDto): any {
+        console.log(qry, data);
+        return this.moderatorService.login(qry,  data);
     }
 
     @Get("/logout/")
@@ -57,14 +64,15 @@ export class ModeratorController {
         return this.moderatorService.updateSeller(id, name, data);
     }
 
-    @Put("/updateProfile/")
+    @Put('/updateProfile/')
+    @UsePipes(new ValidationPipe())
     updateProfile(@Body() data:ModeratorDto): object {
         console.log(data);
         return this.moderatorService.updateProfile(data);
     }
 
     @Post("/removeBook/:id")
-    removeBook(@Param() id: number): any {
+    removeBook(@Param() id: number,ParseIntPipe): any {
         return this.moderatorService.removeBook(id);
     }
 
@@ -73,3 +81,4 @@ export class ModeratorController {
         return this.moderatorService.deleteAccount(id);
     }
 }
+
