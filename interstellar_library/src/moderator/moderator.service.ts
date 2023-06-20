@@ -29,10 +29,7 @@ export class ModeratorService {
     }
 
     async getCustomerById(id): Promise<any> {
-     
-       
         return this.customerRepository.findOne(id);
-      
     }
     
     getSellerById(id:SellerDto, data:SellerDto): object {
