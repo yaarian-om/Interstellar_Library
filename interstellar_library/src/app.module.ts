@@ -1,3 +1,6 @@
+import { CustomerService } from './Customer/customer.service';
+import { CustomerModule } from './Customer/customer.module';
+import { CustomerController } from './Customer/customer.controller';
 import { SellerService } from './Seller/seller.service';
 import { SellerController } from './Seller/seller.controller';
 import { SellerModule } from './Seller/seller.module';
@@ -7,6 +10,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
+<<<<<<< HEAD
   imports: [SellerModule, TypeOrmModule.forRoot(
     { type: 'postgres',
     host: 'localhost',
@@ -17,6 +21,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     autoLoadEntities: true,
     synchronize: true,
     } ),],
+=======
+  imports: [
+    CustomerModule, SellerModule,],
+>>>>>>> d28caa322ba0fedd627b4c717fbe97e8c783378c
   controllers: [AppController],
   providers: [AppService],
 })
