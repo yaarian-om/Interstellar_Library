@@ -7,10 +7,24 @@ import { SellerModule } from './Seller/seller.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
+<<<<<<< HEAD
+  imports: [SellerModule, TypeOrmModule.forRoot(
+    { type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'admin', //Change to your Password
+    database: 'Interstellar_Library',
+    autoLoadEntities: true,
+    synchronize: true,
+    } ),],
+=======
   imports: [
     CustomerModule, SellerModule,],
+>>>>>>> d28caa322ba0fedd627b4c717fbe97e8c783378c
   controllers: [AppController],
   providers: [AppService],
 })

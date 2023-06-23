@@ -4,7 +4,7 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
-import { AddBooksDTO, FeedbackDTO, SellerDTO } from './seller.dto';
+import { BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MulterError, diskStorage } from "multer";
 // import multer from 'multer';
@@ -25,7 +25,7 @@ export class SellerController {
 
     @Post('/add_books')
     @UsePipes(new ValidationPipe())
-    AddBooks(@Body() book_info: AddBooksDTO):object {
+    AddBooks(@Body() book_info: BookDTO):object {
         // console.log(book_info); // Working
         return this.sellerService.AddBooks(book_info);
     }
@@ -36,7 +36,7 @@ export class SellerController {
     }
 
     @Get('/books/search_books')
-    ViewSingleBook(@Query() book_info:AddBooksDTO): AddBooksDTO{ 
+    ViewSingleBook(@Query() book_info:BookDTO): BookDTO{ 
         // console.log(book_info); // Working
         return this.sellerService.ViewSingleBook(book_info);
     }
@@ -44,7 +44,7 @@ export class SellerController {
 
     @Put('/books/update_book_info/:id')
     @UsePipes(new ValidationPipe())
-    UpdateBookInfo(@Param('id', ParseIntPipe) id:number, @Body() updated_data:AddBooksDTO): object{
+    UpdateBookInfo(@Param('id', ParseIntPipe) id:number, @Body() updated_data:BookDTO): object{
         return this.sellerService.UpdateBookInfo(id,updated_data);
     }
     
@@ -71,7 +71,7 @@ export class SellerController {
                     destination: './assets/book_images',
                     filename: function (req, file, cb) {
                         cb(null,Date.now()+file.originalname)
-                    },
+                    }, 
                 })
             }
         ))
@@ -91,6 +91,7 @@ export class SellerController {
 
 
     @Post('/feedbacks/send_feedback')
+    @UsePipes(new ValidationPipe())
     SendFeedback(@Body() feedback_info: FeedbackDTO): object{
         return this.sellerService.SendFeedback(feedback_info);
     }
@@ -136,7 +137,7 @@ export class SellerController {
 
     // Seller Image Upload 
     
-    @Post(('/profile/update_profile_info/upload_profile_image'))
+    @Put(('/profile/update_profile_info/upload_profile_image/:id'))
     @UseInterceptors(FileInterceptor('myfile',
         { 
             fileFilter: (req, file, cb) => {
@@ -155,10 +156,11 @@ export class SellerController {
             })
         }
     ))
-    UploadSellerImage(@UploadedFile() myfileobj: Express.Multer.File):object
+    UploadSellerImage(@Param('id', ParseIntPipe) id: number,
+        @UploadedFile() myfileobj: Express.Multer.File):object
     {
         console.log(myfileobj) // We can find the file name here
-        return this.sellerService.UploadSellerImage(myfileobj.filename);
+        return this.sellerService.UploadSellerImage(id,myfileobj.filename);
     }
 
     @Get('/profile/profile_image/:name')
@@ -167,6 +169,7 @@ export class SellerController {
     }
 
 
+    
 
 
 }
