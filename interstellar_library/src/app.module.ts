@@ -4,9 +4,19 @@ import { SellerModule } from './Seller/seller.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [SellerModule],
+  imports: [SellerModule, TypeOrmModule.forRoot(
+    { type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'admin', //Change to your Password
+    database: 'Interstellar_Library',
+    autoLoadEntities: true,
+    synchronize: true,
+    } ),],
   controllers: [AppController],
   providers: [AppService],
 })
