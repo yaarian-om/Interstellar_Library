@@ -6,14 +6,18 @@ import { Injectable } from '@nestjs/common';
 import { BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SellerEntity, TestEntity } from './seller.entity';
+import { AddressEntity, BookEntity, FeedbackEntity, SellerEntity } from './seller.entity';
 import { promises } from 'dns';
+import { plainToClass } from 'class-transformer';
 
 @Injectable()
 export class SellerService {
 
     constructor(
-        @InjectRepository(SellerEntity) private sellerRepository: Repository<SellerEntity>
+        @InjectRepository(SellerEntity) private sellerRepository: Repository<SellerEntity>,
+        @InjectRepository(FeedbackEntity) private feedbackRepository: Repository<FeedbackEntity>,
+        @InjectRepository(BookEntity) private bookRepository: Repository<BookEntity>,
+        @InjectRepository(AddressEntity) private addressRepository: Repository<AddressEntity>,
         //  Add More Here
         ){}
     
@@ -24,63 +28,36 @@ export class SellerService {
     current_book_info : BookDTO
     current_feedback_info : FeedbackDTO
 
-    AddBooks(book_info: BookDTO) : object {
-        this.current_book_info = book_info;
-        return book_info;
+    async AddBooks(id:number,book_info: BookDTO) : Promise<BookEntity> {
+        //! Problem : Current logged in Seller_ID is not being added to the book table by using session
+
+        return this.bookRepository.save(book_info);
     }
 
-    ViewAllBooks(): any {
-        if(this.current_book_info != null){
-            return this.current_book_info;
-        }
-        else{
-            return "No Books are added yet.";
-        }
+    ViewAllBooks(id): Promise<SellerEntity[]> {
+        return this.sellerRepository.find({
+            where: { Seller_ID: id },
+            relations: {
+                books: true
+            }
+            });
     }
 
-    ViewSingleBook(book_info: BookDTO): any {
-        // console.log(book_info); // Working
 
-        if(book_info != null){
-            if(book_info.Book_ID != null && book_info.Book_ID == this.current_book_info.Book_ID){
-                return "Book id Found ! The Id is = "+book_info.Book_ID;
-            }
-            if(book_info.Title != null && book_info.Title == this.current_book_info.Title){
-                return "Book Name Found ! The Name is = "+book_info.Title;
-            }
-            if(book_info.ISBN != null && book_info.ISBN == this.current_book_info.ISBN){
-                return "Book ICBN Found ! The ICBN is = "+book_info.ISBN;
-            }
-            
-            return "Book Not Found";
-            
-        }
+    async ViewSingleBook(id: number): Promise<BookEntity> {
+        return this.bookRepository.findOneBy({Book_ID: id});
     }
 
-    UpdateBookInfo(s_id:number, updated_data: BookDTO): object {
-
-        // console.log(s_id); // Working
-        // console.log(updated_data); // Working
-        // console.log(this.current_book_info); // Working
-
-
-        if((s_id == this.current_book_info.Book_ID) && (s_id >= 0 ) && (this.current_book_info.Book_ID >= 0)){
-            this.current_book_info = updated_data;
-            return this.current_book_info;
-        }else{
-            return {"Error":"Book Not Found"};
-        }
+    async UpdateBookInfo(b_id:number, updated_data: BookDTO): Promise<BookEntity> {
+        
+        await this.bookRepository.update(b_id, updated_data); // Where to Update , Updated Data
+        return this.bookRepository.findOneBy({Book_ID: b_id});
 
     }
 
     DeleteBookInfo(id: number): any {
-        if(id == this.current_book_info.Book_ID){
-            this.current_book_info = null;
-            return "Book id = "+id+" And the Book Deleted Successfully";
-        }else{
-            return {"Error":"Book Not Found. Failed to Delete"};
-        }
-       
+        this.bookRepository.delete(id);
+        return {"Success":"Book Deleted Successfully"};
     }
 
     UploadBookImage(filename: string): any {
@@ -92,10 +69,20 @@ export class SellerService {
         }
     }
 
-    getBookImages(name: any, res: any): any {
-        if(this.current_book_info != null && name != null){
-            res.sendFile(name,{ root: './assets/book_images' })
-        }
+    async getBookImages(id: number, res: any): Promise<any> {
+
+        const currentBook = await this.bookRepository.findOneBy({ Book_ID: id });
+        let currentBookDTO: BookDTO = plainToClass(BookDTO, currentBook);
+        if (currentBook) {
+            const currentBookDTO: BookDTO = plainToClass(BookDTO, currentBook);
+            console.log(currentBookDTO);
+            return res.sendFile(currentBookDTO.Book_Image, {
+              root: './assets/book_images',
+            });
+          } else {
+            return { Error: 'No Book available in the database to show' };
+          }
+
     }
 
     
@@ -103,7 +90,7 @@ export class SellerService {
 
 // ############################################# SELLER ##############################################
 
-    SendFeedback(feedback_info: FeedbackDTO): object {
+    async SendFeedback(feedback_info: FeedbackEntity): Promise<FeedbackEntity> {
         const now: Date = new Date();
         const options: Intl.DateTimeFormatOptions = { 
             year: 'numeric', 
@@ -117,25 +104,22 @@ export class SellerService {
         const dateString: string = now.toLocaleString(undefined, options);
         // console.log(dateString); // Working
         feedback_info.Date = dateString;
-
-        this.current_feedback_info = feedback_info;
-        return feedback_info;
+        feedback_info.Receiver_Type = "Admin";
+        return this.feedbackRepository.save(feedback_info);
     }
 
 
-    ViewCustomerFeedback(): any {
-        if(this.current_feedback_info != null){
-            return this.current_feedback_info;
-        }
-        else{
-            return "No Feedbacks to show.";
-        }
+    async ViewCustomerFeedback(): Promise<FeedbackEntity[]> {
+        return this.feedbackRepository.find({
+            where: { Receiver_Type: 'Seller' }
+          });
     }
 
 
     async Logout(id: number): Promise<any> {
         let currentSeller = this.sellerRepository.findOneBy({Seller_ID: id});
         if(currentSeller){
+            // TODO: Destroy Session
             return "Logout Successfully";
         }else{
             return "Logout Failed";
@@ -143,9 +127,7 @@ export class SellerService {
     }
 
 
-    async Signup(seller_info: SellerEntity): Promise<SellerEntity> {
-        // this.current_seller_info = seller_info;
-        // return seller_info;
+    async Signup(seller_info: SellerDTO): Promise<SellerEntity> {
         seller_info.Profile_Picture = "temp.png";
         return this.sellerRepository.save(seller_info);
     }
@@ -153,8 +135,6 @@ export class SellerService {
     async DeleteAccount(id: number): Promise<void> {
         await this.sellerRepository.delete(id);
     }
-
-    
 
     async ViewSellerProfile(id: number): Promise<SellerEntity> {
         return this.sellerRepository.findOneBy({Seller_ID: id});
@@ -164,28 +144,18 @@ export class SellerService {
 
 
 
-    async UpdateProfileInfo(id: number, updated_data: SellerEntity): Promise<SellerEntity> {
-        await this.sellerRepository.update(id, updated_data);
+    async UpdateProfileInfo(id: number, updated_data: SellerDTO): Promise<SellerEntity> {
+        await this.sellerRepository.update(id, updated_data); // Where to Update , Updated Data
         return this.sellerRepository.findOneBy({Seller_ID: id});
     }
 
-    async Login(seller_info: SellerEntity): Promise<SellerEntity> {
+    async Login(seller_info: SellerDTO): Promise<SellerEntity> {
         
         let seller = this.sellerRepository.findOneBy({Email: seller_info.Email, Password: seller_info.Password});
         return seller;
     }
 
     async UploadSellerImage(id:number,image:string): Promise<SellerEntity> {
-        
-        /*
-        if(this.current_seller_info != null && image != null){
-            this.current_seller_info.Profile_Picture = image;
-            return this.current_seller_info;
-        }else{
-            return {"Error":"No seller available in the database to show"};
-        }
-        */
-
         
         let current_seller = this.sellerRepository.findOneBy({Seller_ID: id});
         if(current_seller){
@@ -202,12 +172,7 @@ export class SellerService {
         if(current_seller){
             res.sendFile(current_seller.Profile_Picture,{ root: './assets/profile_images' })
         }
-        // if(this.current_seller_info != null && name != null){
-        //     res.sendFile(name,{ root: './assets/profile_images' })
-        // }
     }
-    
-
 
 
 
