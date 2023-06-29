@@ -3,20 +3,8 @@ import { IsString, IsNumber, Matches, Min, IsEmail, NotEquals, IsInt, IsPositive
 
 export class BookDTO {
 
-    // @IsNumber({},{message:"ID must be in Integer Format"})
-    // @Min(0,{message:"ID must be greater or equal than 0"})
-    // @IsString({message:"Book Name must be in Alphabetical Format"})
-    // @Matches( /^[a-zA-Z\s-:]+$/, {message:"Book Name must be in Alphabetical Format"})
-    // @IsNumber({},{message:"ICBN is can only be Numbers"})
-    // @Min(0,{message:"ICBN number can not be negative"})
-    // @IsNumber({},{message:"Price Can not be textual or Alphabetical Format"})
-    // @Min(0,{message:"Price can not be negative"})
-    
-
     // Book_ID
     @IsNotEmpty({ message: 'Book ID cannot be empty or null' })
-    @IsInt({ message: 'Book ID should be an integer' })
-    // @IsPositive({ message: 'Book ID should be a positive number' })
     Book_ID : number;
 
     // Title
@@ -47,21 +35,14 @@ export class BookDTO {
 
     // Price
     @IsNotEmpty({ message: 'Price cannot be empty or null' })
-    @IsNumber({}, { message: 'Price should be a number' })
-    @IsPositive({ message: 'Price should be a positive number' })
-    @Max(29999, { message: 'Price should not exceed 29999' })
-    Price : number;
+    @MaxLength(7, { message: 'Price number should not be more than 7 characters long' })
+    Price : string;
 
     // Book_Image
     @IsString({ message: 'Book Image Name should be a string' })
     Book_Image : string;
 
-    // Seller_ID
-    @IsNotEmpty({ message: 'Seller ID cannot be empty or null' })
-    @IsInt({ message: 'Seller ID should be an integer' })
-    @IsPositive({ message: 'Seller ID should be a positive number' })
-    Seller_ID : number;
-
+    
 }
 
 
@@ -71,8 +52,6 @@ export class FeedbackDTO {
 
     // Feedback_ID
     @IsNotEmpty({ message: 'Feedback ID cannot be empty or null' })
-    @IsInt({ message: 'Feedback ID should be an integer' })
-    // @IsPositive({ message: 'Feedback ID should be a positive number' })
     Feedback_ID : number;
 
     // Comment
@@ -88,14 +67,15 @@ export class FeedbackDTO {
     // Sender_ID
     @IsNotEmpty({ message: 'Sender ID cannot be empty or null' })
     @IsInt({ message: 'Feedback Sender ID should be an integer' })
-    // @IsPositive({ message: 'Feedback Sender ID should be a positive number' })
     Sender_ID : number;
 
     // Receiver_ID
-    @IsNotEmpty({ message: 'Receiver ID cannot be empty or null' })
     @IsInt({ message: 'Feedback Receiver ID should be an integer' })
-    // @IsPositive({ message: 'Feedback Receiver ID should be a positive number' })
     Receiver_ID : number;
+
+    // Receiver_Type
+    @IsString({ message: 'Receiver Type should be a string' })
+    Receiver_Type : string;
 
 
 
@@ -103,22 +83,9 @@ export class FeedbackDTO {
 
 export class SellerDTO{
 
-    // @IsNumber({},{message:"ID must be in Integer Format"})
-    // @Min(0,{message:"ID must be greater or equal than 0"})
-    // @IsEmail({}, {message:"Invalid Email"})
-    // @Matches( /^[a-zA-Z\s.]+$/, {message:"You can not use any special characters or symbols in Name"})
-    // @IsString()
-    // @NotEquals('username', {message: 'Password must not be the same as your username'})
-    // @NotEquals('email', {message: 'Password must not be the same as your email'})
-    // @IsNumber({},{message:"Phone Number must be in Integer Format"})
-    // @Min(0,{message:"Phone Number must be greater or equal than 0"})
-    // @Matches( /^[a-zA-Z\s-:]+$/, {message:"Address must be in Alphabetical Format"})
-
 
     // Seller_ID
     @IsNotEmpty({ message: 'Seller ID cannot be empty or null' })
-    @IsInt({ message: 'Seller ID should be an integer' })
-    // @IsPositive({ message: 'Seller ID should be a positive number' })
     Seller_ID : number;
 
 
@@ -157,5 +124,38 @@ export class SellerDTO{
     // Profile_Picture
     @IsString({ message: 'Profile Picture Name should be a string' })
     Profile_Picture : string;
+
+}
+
+export class AddressDTO{
+
+    // Address_ID
+    @IsNotEmpty({ message: 'Address ID cannot be empty or null' })
+    Address_ID : number;
+
+
+    // Street
+    @IsNotEmpty({ message: 'Seller Street Address cannot be empty or null' })
+    @IsString({ message: 'Street should be a string' })
+    Street : string;
+
+    // Building
+    @IsString({ message: 'Building should be a string' })
+    Building : string;
+
+    // City
+    @IsNotEmpty({ message: 'Seller City Address cannot be empty or null' })
+    @IsString({ message: 'City should be a string' })
+    City : string;
+
+    // Country
+    @IsNotEmpty({ message: 'Seller Country Address cannot be empty or null' })
+    @IsString({ message: 'Country should be a string' })
+    Country : string;
+
+    // ZIP
+    @IsNotEmpty({ message: 'Seller ZIP Address cannot be empty or null' })
+    ZIP : string;
+
 
 }
