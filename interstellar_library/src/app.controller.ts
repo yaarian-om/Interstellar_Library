@@ -9,4 +9,11 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  // @Get()
+  // getHello(): string {
+  //   return "Hey Developer! Cool Down, get a Coffee, Your NestJS is working fine.";
+  // }
+
+
 }
