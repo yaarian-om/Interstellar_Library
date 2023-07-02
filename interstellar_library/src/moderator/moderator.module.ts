@@ -3,10 +3,11 @@ import { ModeratorController } from "./moderator.controller";
 import { ModeratorService } from "./moderator.service";
 import { Type } from "class-transformer";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { BookEntity, CustomerEntity, ModeratorEntity, SellerEntity } from "./moderator.entity";
+import { CustomerEntity, ModeratorEntity} from "./moderator.entity";
+import { BookEntity, FeedbackEntity, SellerEntity } from "src/Seller/seller.entity";
 
 @Module({
-    imports: [TypeOrmModule.forFeature([ModeratorEntity, SellerEntity, CustomerEntity, BookEntity])],
+    imports: [TypeOrmModule.forFeature([ModeratorEntity, SellerEntity, FeedbackEntity ,CustomerEntity, BookEntity])],
     controllers: [ModeratorController],
     providers: [ModeratorService]
 })

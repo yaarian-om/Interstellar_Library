@@ -16,7 +16,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: 'admin', //Change to your Password
+    password: 'MoHiT8970', //Change to your Password
     database: 'Interstellar_Library',
     autoLoadEntities: true,
     synchronize: true,
@@ -24,4 +24,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
