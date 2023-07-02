@@ -1,6 +1,7 @@
 import { IsEmail, IsIn, IsInt, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
 export class ModeratorDto {
+
     @IsNotEmpty({ message: 'Moderator ID cannot be empty or null' })
     id:number;
 
@@ -21,6 +22,7 @@ export class ModeratorDto {
 }
 
 export class CustomerDto {
+    
     @IsNotEmpty({ message: 'Customer ID cannot be empty or null' })
     id:number;
 
