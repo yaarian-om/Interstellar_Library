@@ -1,8 +1,10 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { CustomerDto, ModeratorDto, SellerDto } from "./moderator.dto";
-import { BookEntity, CustomerEntity, ModeratorEntity, SellerEntity } from "./moderator.entity";
+import { CustomerDto, ModeratorDto} from "./moderator.dto";
+import { CustomerEntity, ModeratorEntity} from "./moderator.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { SellerEntity, BookEntity } from "src/Seller/seller.entity";
+import { SellerDTO } from "src/Seller/seller.dto";
 
 
 
@@ -21,7 +23,7 @@ export class ModeratorService {
     ) {}
     
     customer_curr: CustomerDto;
-    seller_curr: SellerDto;
+    seller_curr: SellerDTO;
     moderator_curr: ModeratorDto;
 
     getHello(): string {
@@ -32,9 +34,9 @@ export class ModeratorService {
         return this.customerRepository.findOne(id);
     }
     
-    getSellerById(id:SellerDto, data:SellerDto): object {
+    getSellerById(id:SellerDTO, data:SellerDTO): object {
         if(data != null)
-            if(data.id == id.id)
+            if(data.Seller_ID == id.Seller_ID)
                 return data;
             else 
                 return ({message: "Seller not found"})

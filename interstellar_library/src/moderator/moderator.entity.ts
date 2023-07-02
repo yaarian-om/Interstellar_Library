@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { AddressEntity } from "src/Seller/seller.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('moderator')
 export class ModeratorEntity{
@@ -22,24 +23,4 @@ export class CustomerEntity{
     email:string;
     @Column({length:8})
     password:string;
-}
-
-@Entity('seller')
-export class SellerEntity{
-    @PrimaryGeneratedColumn()
-    id: number;
-    @Column()
-    name:string;
-    @Column()
-    email:string;
-    @Column({length:8})
-    password:string;
-}
-
-@Entity('book')
-export class BookEntity{
-    @PrimaryColumn()
-    ISBN: number;
-    @Column()
-    title:string;
 }
