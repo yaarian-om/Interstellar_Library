@@ -4,7 +4,7 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { AdministratorService } from './administrator.service';
-import { AdminDTO, BookDTO, LogoutDTO } from './administrator.dto';
+import {  AdminDTO, BookDTO, LogoutDTO } from './administrator.dto';
 import { SellerDTO } from 'src/Seller/seller.dto';
 
 @Controller('admin')
@@ -26,16 +26,15 @@ export class AdministratorController {
     @Get('/viewseller')
     @UsePipes(new ValidationPipe())
     ViewSeller() : any{
-        return "";
+        return "i am seller";
     }
 
     @Post('/login')
-    @UsePipes(new ValidationPipe())
     Login(@Body() loginData : AdminDTO) : object{
         return this.adminService.Login(loginData);
     }
 
-    @Post('/sellers')
+    @Post('/addsellers')
     @UsePipes(new ValidationPipe())
     addSeller(@Body() sellerData: SellerDTO): object {
       return this.adminService.addSeller(sellerData);

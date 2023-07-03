@@ -50,10 +50,10 @@ export class RemoveSellerDTO {
   }
 
   export class BookDTO {
-    @IsString()
+    //@IsString()
     title: string;
   
-    @IsString()
+   // @IsString()
     author: string;
   
   }
@@ -74,7 +74,7 @@ export class RemoveSellerDTO {
 
   export class LogoutDTO {
     @IsString()
-    @Length(36, 36)
+    @Length(0, 36)
     sellerId: string;
   }
   
