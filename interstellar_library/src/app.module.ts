@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModeratorModule } from './moderator/moderator.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as session from 'express-session';
 
 @Module({
   imports: [ModeratorModule, SellerModule, TypeOrmModule.forRoot(
@@ -16,7 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     host: 'localhost',
     port: 5432,
     username: 'postgres',
-    password: 'MoHiT8970', //Change to your Password
+    password: 'admin', //Change to your Password
     database: 'Interstellar_Library',
     autoLoadEntities: true,
     synchronize: true,
