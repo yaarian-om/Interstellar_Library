@@ -9,9 +9,10 @@ export class ModeratorEntity{
     name:string;
     @Column()
     email:string;
-    @Column({length:8})
+    @Column()
     password:string;
 }
+
 
 @Entity('customer')
 export class CustomerEntity{

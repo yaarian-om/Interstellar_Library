@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Session, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ModeratorService } from "./moderator.service";
-import { ModeratorDto } from "./moderator.dto";
+import { ModeratorDto, ModeratorLoginDto } from "./moderator.dto";
 import { SellerDTO } from "src/Seller/seller.dto";
+import session = require("express-session") ;
 
 @Controller('moderator')
 export class ModeratorController {
@@ -23,13 +24,13 @@ export class ModeratorController {
     }
 
     @Get("/customerFeedback/:id")
-    getCustomerFeedback(@Param() id: number): any {
-        return this.moderatorService.getCustomerFeedback(id);
+    getCustomerFeedback(): any {
+        return this.moderatorService.getCustomerFeedback();
     }
 
     @Get("/sellerFeedback/:id")
-    getSellerFeedback(@Param() id: number): any {
-        return this.moderatorService.getSellerFeedback(id);
+    getSellerFeedback(): any {
+        return this.moderatorService.getSellerFeedback();
     }
 
     @Get("/books/")
@@ -41,12 +42,15 @@ export class ModeratorController {
     //login(@Param() email:string, @Param() password:string,@Body() data:ModeratorDto): any {
     //    return this.moderatorService.login(email, password, data);
     //}
+    @Post("/register/")
+    @UsePipes(new ValidationPipe())
+    register(@Body() data:ModeratorDto): any {
+        return this.moderatorService.register(data);
+    }
 
     @Post("/login/")
-    @UsePipes(new ValidationPipe())
-    login(@Query() qry:ModeratorDto,@Body() data:ModeratorDto): any {
-        console.log(qry, data);
-        return this.moderatorService.login(qry,  data);
+    login(@Body() data:ModeratorLoginDto, @Session() session): any {
+        return this.moderatorService.Login(data)
     }
 
     @Get("/logout/")
@@ -78,7 +82,7 @@ export class ModeratorController {
     }
 
     @Post("/deleteAccount/:id")
-    deleteAccount(@Param() id: number): any {
+    deleteAccount(@Param('id', ParseIntPipe) id: number): any {
         return this.moderatorService.deleteAccount(id);
     }
 }

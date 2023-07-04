@@ -1,8 +1,8 @@
 import { IsEmail, IsIn, IsInt, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import exp from "constants";
 
 export class ModeratorDto {
 
-    @IsNotEmpty({ message: 'Moderator ID cannot be empty or null' })
     id:number;
 
     @IsString({ message: 'Moderator Name should be a string' })
@@ -17,7 +17,13 @@ export class ModeratorDto {
 
     @IsNotEmpty({ message: 'Moderator Password cannot be empty or null' })
     @IsString({ message: 'Password should be a string' })
-    @Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/, { message: 'Password should contain at least one uppercase letter, one lowercase letter, one number, and one special character, and is at least 8 characters long.' })
+    //@Matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+])[0-9a-zA-Z!@#$%^&*()_+]{8,}$/, { message: 'Password should contain at least one uppercase letter, one lowercase letter, one number, and one special character, and is at least 8 characters long.' })
+    password:string;
+}
+
+export class ModeratorLoginDto {
+    @IsEmail({}, { message: 'Please enter a valid email address' })
+    email:string;
     password:string;
 }
 

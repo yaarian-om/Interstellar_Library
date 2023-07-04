@@ -1,10 +1,11 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { CustomerDto, ModeratorDto} from "./moderator.dto";
+import { CustomerDto, ModeratorDto, ModeratorLoginDto} from "./moderator.dto";
 import { CustomerEntity, ModeratorEntity} from "./moderator.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { SellerEntity, BookEntity } from "src/Seller/seller.entity";
+import { SellerEntity, BookEntity, FeedbackEntity } from "src/Seller/seller.entity";
 import { SellerDTO } from "src/Seller/seller.dto";
+import * as bcrypt from 'bcrypt';
 
 
 
@@ -19,7 +20,9 @@ export class ModeratorService {
         @InjectRepository(SellerEntity)
         private readonly sellerRepository: Repository<SellerEntity>,
         @InjectRepository(BookEntity)
-        private readonly bookRepository: Repository<BookEntity>
+        private readonly bookRepository: Repository<BookEntity>,
+        @InjectRepository(FeedbackEntity)
+        private readonly feedbackRepository: Repository<FeedbackEntity>
     ) {}
     
     customer_curr: CustomerDto;
@@ -52,11 +55,21 @@ export class ModeratorService {
         return ({id: 1, name: "Book"})
     }
 
-    login(qry:ModeratorDto, data:ModeratorDto): string {
-        if(qry.email==data.email && qry.password==data.password)
-            return "Login Successful";
-        else
-            return "Invalid Credentials";
+    async register(data: ModeratorDto): Promise<any> {  
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(data.password, salt);
+        data.password = hashedPassword;
+        return this.moderatorRepository.save(data);
+    }
+    async Login(moderator_info: ModeratorLoginDto) {
+        const moderatorData = await this.moderatorRepository.findOne({where: {email: moderator_info.email}});
+        const isMatch: boolean = await bcrypt.compare(moderator_info.password, moderatorData.password);
+        if(isMatch) {
+            return moderatorData;
+        }
+        else {
+            return false;
+        }
     }
 
     logout(): object {
@@ -70,19 +83,24 @@ export class ModeratorService {
         return data;
     }
 
-    getCustomerFeedback(id:number): object {
-        return ({id: id, name: "Feedback"})
+    async getCustomerFeedback(): Promise<FeedbackEntity[]> {
+        return this.feedbackRepository.find({
+            where: {Receiver_Type: 'Customer'}
+        });
     }
 
-    getSellerFeedback(id:number): object {
-        return ({id: id, name: "Feedback"})
+    async getSellerFeedback(): Promise<FeedbackEntity[]> {
+        return this.feedbackRepository.find({
+            where: {Receiver_Type: 'Seller'}
+        });
     }
 
     removeBook(id:number): object {
         return ({id: id, name: "Book"})
     }
 
-    deleteAccount(id:number): object {
-        return this.moderatorRepository.delete(id);
+    deleteAccount(id:number): any {
+        this.moderatorRepository.delete(id);
+        return {message: "Account Deleted"};
     }
 }
