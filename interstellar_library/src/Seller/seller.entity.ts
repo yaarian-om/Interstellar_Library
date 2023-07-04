@@ -1,5 +1,37 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn } from "typeorm";
 
+@Entity("seller")
+export class SellerEntity{
+    @PrimaryGeneratedColumn()
+    Seller_ID: number;
+
+    @Column()
+    Name: string;
+
+    @Column()
+    Email: string;
+
+    @Column()
+    Password: string;
+
+    @Column()
+    Phone: string;
+
+    @Column()
+    Profile_Picture : string;
+
+    // One to Many Relationships. One Seller Can have many Books
+    @OneToMany(()=>BookEntity, book=>book.seller)
+    books: BookEntity[];
+
+    // //  One to One Relationships. One Seller can have only one Address
+    // @OneToOne(() => AddressEntity)
+    // @JoinColumn()
+    // address: AddressEntity;
+
+}
+
+
 
 @Entity("address")
 export class AddressEntity{
@@ -29,49 +61,14 @@ export class AddressEntity{
     @Column()
     ZIP : string;
 
-    // Relationship
-    
-
-
-}
-
-
-
-@Entity("seller")
-export class SellerEntity{
-    @PrimaryGeneratedColumn()
-    Seller_ID: number;
-
-    @Column()
-    Name: string;
-
-    @Column()
-    Email: string;
-
-    @Column()
-    Password: string;
-
-    @Column()
-    Phone: string;
-
-    @Column({length: 120})
-    Address: string;
-
-    @Column()
-    Profile_Picture : string;
-
-    // One to Many Relationships. One Seller Can have many Books
-    @OneToMany(()=>BookEntity, book=>book.seller)
-    books: BookEntity[];
-
     //  One to One Relationships. One Seller can have only one Address
-    @OneToOne(() => AddressEntity)
+    @OneToOne(() => SellerEntity)
     @JoinColumn()
-    address: AddressEntity;
-
-
-
+    seller: SellerEntity;
+    
 }
+
+
 
 @Entity("book")
 export class BookEntity{
