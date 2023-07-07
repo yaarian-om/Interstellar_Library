@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Session, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Put, Query, Session, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from "@nestjs/common";
 import { ModeratorService } from "./moderator.service";
 import { ModeratorDto, ModeratorLoginDto } from "./moderator.dto";
 import { SellerDTO } from "src/Seller/seller.dto";
 import session = require("express-session") ;
+import { FileInterceptor } from "@nestjs/platform-express";
+import { MulterError, diskStorage } from "multer";
 
 @Controller('moderator')
 export class ModeratorController {
@@ -70,14 +72,33 @@ export class ModeratorController {
     }
 
     @Put('/updateProfile/')
+    @UseInterceptors(FileInterceptor('image',
+    {
+        fileFilter: (req, file, cb) => {
+            if (file.originalname.match(/^.*\.(jpg|webp|png|jpeg)$/))
+                cb(null, true);
+            else {
+                cb(new MulterError('LIMIT_UNEXPECTED_FILE', 'image'), false);
+            }
+        },
+        limits: { fileSize: 30000 },
+        storage: diskStorage({
+            destination: './uploads',
+            filename: function (req, file, cb) {
+                cb(null, Date.now() + file.originalname)
+            },
+        })
+    }
+    ))
     @UsePipes(new ValidationPipe())
-    updateProfile(@Body() data:ModeratorDto): object {
+    updateProfile(@Body() data:ModeratorDto, @Session() session, @UploadedFile() imageobj: Express.Multer.File): object {
         console.log(data);
-        return this.moderatorService.updateProfile(data);
+        data.image = imageobj.filename;
+        return this.moderatorService.updateProfile(session.email, data);
     }
 
     @Post("/removeBook/:id")
-    removeBook(@Param() id: number,ParseIntPipe): any {
+    removeBook(@Param() id: number, ParseIntPipe): any {
         return this.moderatorService.removeBook(id);
     }
 

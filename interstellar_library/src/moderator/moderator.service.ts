@@ -47,12 +47,13 @@ export class ModeratorService {
             return ({message: "Invalid Input"})
     }
 
-    updateProfile(data: ModeratorDto): object {
-        return this.moderatorRepository.save(data);
+    async updateProfile(email:string, data: ModeratorDto): Promise<ModeratorEntity> {
+        await this.moderatorRepository.update({email: email}, data);
+        return this.moderatorRepository.findOneBy({email: email});
     }
 
-    getAllBooks(): object {
-        return ({id: 1, name: "Book"})
+    async getAllBooks(): Promise<BookEntity[]> {
+        return this.bookRepository.find();
     }
 
     async register(data: ModeratorDto): Promise<any> {  

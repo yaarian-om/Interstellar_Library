@@ -11,6 +11,8 @@ export class ModeratorEntity{
     email:string;
     @Column()
     password:string;
+    @Column()
+    image:string;
 }
 
 
