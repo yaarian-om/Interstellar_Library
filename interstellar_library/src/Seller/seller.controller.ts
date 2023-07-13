@@ -231,12 +231,6 @@ export class SellerController {
         return this.sellerService.ViewAddress(id);
     }
 
-
-
-    
-
-    
-
 }
 
 
