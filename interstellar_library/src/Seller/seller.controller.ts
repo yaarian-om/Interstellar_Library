@@ -2,7 +2,7 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, Session, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
 import { BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -155,7 +155,8 @@ export class SellerController {
 
     // * Feature 13 : View Seller Profile
     @Get('/profile/:id')
-    ViewSellerProfile(@Param('id', ParseIntPipe) id:number): object{
+    ViewSellerProfile(@Param('id', ParseIntPipe) id:number, @Session() session): object{
+        console.log(session.Seller_ID);
         return this.sellerService.ViewSellerProfile(id);
     }
 
@@ -169,8 +170,17 @@ export class SellerController {
     // * Feature 15 : Login
     @Post('/login')
     // @UsePipes(new ValidationPipe())
-    Login(@Body() seller_info: SellerDTO): object{
-        return this.sellerService.Login(seller_info);
+    async Login(@Body() seller_info: SellerDTO, @Session() session) : Promise<any>{
+        // return this.sellerService.Login(seller_info);
+        const decision = await this.sellerService.Login(seller_info);
+        // console.log("Controller Login"); // Working
+        // console.log(decision); // Working
+        if(decision != null){
+            session.Seller_Email = seller_info.Email;
+            // console.log(session.Seller_Email); // Working
+            return true;
+        }
+        return false;
     }
 
     // * Feature 16 : Upload & Update Seller Image

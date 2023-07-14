@@ -8,9 +8,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ModeratorModule } from './moderator/moderator.module';
 
 @Module({
-  imports: [SellerModule, TypeOrmModule.forRoot(
+  imports: [SellerModule, ModeratorModule, CustomerModule, TypeOrmModule.forRoot(
     { type: 'postgres',
     host: 'localhost',
     port: 5432,

@@ -115,11 +115,9 @@ export class SellerDTO{
     Phone : string;
 
 
-    // Address
-    @IsNotEmpty({ message: 'Address cannot be empty or null' })
-    @MinLength(10, { message: 'Address should be at least 10 characters long' })
-    @MaxLength(100, { message: 'Address should not be more than 200 characters long' })
-    Address: string;
+    // // Address
+    // @IsString({ message: 'Address should be a string' })
+    // Address: string;
 
     // Profile_Picture
     @IsString({ message: 'Profile Picture Name should be a string' })
@@ -156,6 +154,5 @@ export class AddressDTO{
     // ZIP
     @IsNotEmpty({ message: 'Seller ZIP Address cannot be empty or null' })
     ZIP : string;
-
 
 }

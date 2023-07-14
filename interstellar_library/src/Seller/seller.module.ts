@@ -4,6 +4,7 @@ import { SellerService } from './seller.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AddressEntity, BookEntity, FeedbackEntity, SellerEntity } from './seller.entity';
 
+
 @Module({
     imports: [TypeOrmModule.forFeature([SellerEntity,BookEntity,FeedbackEntity,AddressEntity]),],
     controllers: [SellerController],

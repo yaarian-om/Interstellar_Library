@@ -9,6 +9,7 @@ import { Repository } from 'typeorm';
 import { AddressEntity, BookEntity, FeedbackEntity, SellerEntity } from './seller.entity';
 import { promises } from 'dns';
 import { plainToClass } from 'class-transformer';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class SellerService {
@@ -72,7 +73,7 @@ export class SellerService {
     async getBookImages(id: number, res: any): Promise<any> {
 
         const currentBook = await this.bookRepository.findOneBy({ Book_ID: id });
-        let currentBookDTO: BookDTO = plainToClass(BookDTO, currentBook);
+        const currentBookDTO: BookDTO = plainToClass(BookDTO, currentBook);
         if (currentBook) {
             const currentBookDTO: BookDTO = plainToClass(BookDTO, currentBook);
             console.log(currentBookDTO);
@@ -117,7 +118,7 @@ export class SellerService {
 
 
     async Logout(id: number): Promise<any> {
-        let currentSeller = this.sellerRepository.findOneBy({Seller_ID: id});
+        const currentSeller = this.sellerRepository.findOneBy({Seller_ID: id});
         if(currentSeller){
             // TODO: Destroy Session
             return "Logout Successfully";
@@ -129,6 +130,8 @@ export class SellerService {
 
     async Signup(seller_info: SellerDTO): Promise<SellerEntity> {
         seller_info.Profile_Picture = "temp.png";
+        const salt = await bcrypt.genSalt();
+        seller_info.Password = await bcrypt.hash(seller_info.Password, salt);
         return this.sellerRepository.save(seller_info);
     }
 
@@ -151,13 +154,27 @@ export class SellerService {
 
     async Login(seller_info: SellerDTO): Promise<SellerEntity> {
         
-        let seller = this.sellerRepository.findOneBy({Email: seller_info.Email, Password: seller_info.Password});
-        return seller;
+        // const seller = this.sellerRepository.findOneBy({Email: seller_info.Email, Password: seller_info.Password});
+       
+        // console.log("Service Login promise 1"); // Working
+        const saved_seller = await this.sellerRepository.findOneBy({Email: seller_info.Email});
+        // console.log("Service Login promise 2"); // Working
+        // console.log(saved_seller)
+        if(saved_seller != null){
+            const match : boolean = await bcrypt.compare(seller_info.Password, saved_seller.Password);
+            if (match) {
+                return saved_seller;
+            }else{
+                return null;
+            }
+        }
+        // console.log("Service Login promise 3"); // Working
+        return null;
     }
 
     async UploadSellerImage(id:number,image:string): Promise<SellerEntity> {
         
-        let current_seller = this.sellerRepository.findOneBy({Seller_ID: id});
+        const current_seller = this.sellerRepository.findOneBy({Seller_ID: id});
         if(current_seller){
             (await current_seller).Profile_Picture = image;
             await this.sellerRepository.update(id,(await current_seller));
@@ -168,7 +185,7 @@ export class SellerService {
 
     async getSellerImages(id: number, res: any): Promise<any> {
 
-        let current_seller = await this.sellerRepository.findOneBy({Seller_ID: id});
+        const current_seller = await this.sellerRepository.findOneBy({Seller_ID: id});
         if(current_seller){
             res.sendFile(current_seller.Profile_Picture,{ root: './assets/profile_images' })
         }
