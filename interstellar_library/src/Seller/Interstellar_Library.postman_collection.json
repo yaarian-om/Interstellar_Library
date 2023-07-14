@@ -1,0 +1,1949 @@
+{
+	"info": {
+		"_postman_id": "8346ed83-830b-4be7-bc58-3ede12f8b65e",
+		"name": "Interstellar_Library",
+		"description": "Nest_JS Project Backend Tester",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20325646"
+	},
+	"item": [
+		{
+			"name": "Project Alive",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				},
+				"description": "This Requst is to check if the Project is running and **Responding** or not"
+			},
+			"response": [
+				{
+					"name": "Project Responding Output",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-qzq7tvooiT4uMrdYybaud3ZaBhA\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jun 2023 15:26:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Hey Developer! Cool Down, get a Coffee, Your NestJS is working fine."
+				}
+			]
+		},
+		{
+			"name": "Seller Alive",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/index",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"index"
+					]
+				},
+				"description": "This Request is to check if the Seller user is responding or not"
+			},
+			"response": [
+				{
+					"name": "Seller Responding Output",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/index",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"index"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "23"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"17-aGPE8qt4lj82uhqYxgksnZc2KT0\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 14 Jun 2023 15:35:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Relax! Seller is Alive."
+				}
+			]
+		},
+		{
+			"name": "seller/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Seller_ID\":0,\r\n    \"Name\": \"Sudipta Kumar Das\",\r\n    \"Email\": \"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passW0rd$\",\r\n    \"Phone\": \"01931117419\",\r\n    \"Profile_Picture\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Seller Signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\":1,\r\n    \"Name\":\"Sudipta Kumar Das\",\r\n    \"Mail\":\"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passWord1\",\r\n    \"Phone\": 8801931117419,\r\n    \"Address\": \"East Rampura\",\r\n    \"City\": \"Dhaka\",\r\n    \"ZipCode\": 1219,\r\n    \"Country\": \"Bangladesh\",\r\n    \"Image\":\"temp.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"signup"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "209"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d1-VaaY0Lor/4jQQ34tFH8s/iw4fXU\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 08:34:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Name\": \"Sudipta Kumar Das\",\n    \"Mail\": \"dip.kumar020@gmail.com\",\n    \"Password\": \"passWord1\",\n    \"Phone\": 8801931117419,\n    \"Address\": \"East Rampura\",\n    \"City\": \"Dhaka\",\n    \"ZipCode\": 1219,\n    \"Country\": \"Bangladesh\",\n    \"Image\": \"temp.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\": \"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passW0rd$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Seller Login Output",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Mail\":\"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passWord1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"login"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3d-A5gB2gBKMo2WJiajyLMqwv1Llao\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 19:33:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Congratulations Dev! Seller found! The seller Primary_Key = 1"
+				}
+			]
+		},
+		{
+			"name": "seller/profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/profile/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Seller Profile",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/profile/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "184"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"b8-K5rSp0eJ4uP0HGH/kmCPH4a3HXA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 07:23:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Name\": \"Sudipta Kumar Das\",\n    \"Mail\": \"dip.kumar020@gmail.com\",\n    \"Password\": 12345,\n    \"Phone\": 8801931117419,\n    \"Address\": \"East Rampura\",\n    \"City\": \"Dhaka\",\n    \"ZipCode\": 1219,\n    \"Country\": \"Bangladesh\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/update_profile_info/upload_profile_image",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "myfile",
+							"type": "file",
+							"src": "/C:/Users/ASUS/Desktop/TEST.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/seller/profile/update_profile_info/upload_profile_image/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"update_profile_info",
+						"upload_profile_image",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Seller Profile Image",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myfile",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/TEST.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/seller/profile/update_profile_info/upload_profile_image",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"update_profile_info",
+								"upload_profile_image"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "222"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"de-RrdkTiargF6o/BM3JKbi+ScRRbI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 08:51:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Name\": \"Sudipta Kumar Das\",\n    \"Mail\": \"dip.kumar020@gmail.com\",\n    \"Password\": \"passWord1\",\n    \"Phone\": 8801931117419,\n    \"Address\": \"East Rampura\",\n    \"City\": \"Dhaka\",\n    \"ZipCode\": 1219,\n    \"Country\": \"Bangladesh\",\n    \"Image\": \"1686991904012TEST.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/profile_image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/profile/profile_image/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"profile_image",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/profile/update_profile_info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Seller_ID\": 1,\r\n    \"Name\": \"Sudipta Kumar Das\",\r\n    \"Email\": \"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passW0rd$\",\r\n    \"Phone\": \"8801931117419\",\r\n    \"Profile_Picture\": \"TEST.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/profile/update_profile_info/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"update_profile_info",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Seller Profile Info Output",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Seller_ID\": 1,\r\n    \"Name\": \"Sudipta Kumar Das\",\r\n    \"Email\": \"dip.kumar020@gmail.com\",\r\n    \"Password\": \"passW0rd$\",\r\n    \"Phone\": \"8801931117419\",\r\n    \"Profile_Picture\": \"TEST.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/profile/update_profile_info/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"update_profile_info",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "151"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"97-crgDSqXRBWhn/n+uj3tU53IFa7E\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jul 2023 12:54:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Seller_ID\": 1,\n    \"Name\": \"Sudipta Kumar Das\",\n    \"Email\": \"dip.kumar020@gmail.com\",\n    \"Password\": \"passW0rd$\",\n    \"Phone\": \"8801931117419\",\n    \"Profile_Picture\": \"TEST.jpg\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/add_books",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "myfile",
+							"type": "file",
+							"src": "/C:/Users/ASUS/Desktop/TEST_BOOK.png"
+						},
+						{
+							"key": "Book_ID",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "Title",
+							"value": "Java Simplica",
+							"type": "text"
+						},
+						{
+							"key": "Author",
+							"value": "Sudipta Kumar Das",
+							"type": "text"
+						},
+						{
+							"key": "ISBN",
+							"value": "0123456789",
+							"type": "text"
+						},
+						{
+							"key": "Condition",
+							"value": "Good",
+							"type": "text"
+						},
+						{
+							"key": "Price",
+							"value": "1200",
+							"type": "text"
+						},
+						{
+							"key": "Book_Image",
+							"value": "temp.png",
+							"type": "text"
+						},
+						{
+							"key": "seller",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/seller/add_books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"add_books",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Books Output",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myfile",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/TEST_BOOK.png"
+								},
+								{
+									"key": "Book_ID",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Title",
+									"value": "Java Simplica",
+									"type": "text"
+								},
+								{
+									"key": "Author",
+									"value": "Sudipta Kumar Das",
+									"type": "text"
+								},
+								{
+									"key": "ISBN",
+									"value": "0123456789",
+									"type": "text"
+								},
+								{
+									"key": "Condition",
+									"value": "Good",
+									"type": "text"
+								},
+								{
+									"key": "Price",
+									"value": "1200",
+									"type": "text"
+								},
+								{
+									"key": "Book_Image",
+									"value": "temp.png",
+									"type": "text"
+								},
+								{
+									"key": "seller",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/seller/add_books/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"add_books",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "175"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"af-G51/KLmdEsk2wP2Dd1n4vBHdafc\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 13 Jul 2023 12:58:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Book_ID\": 1,\n    \"Title\": \"Java Simplica\",\n    \"Author\": \"Sudipta Kumar Das\",\n    \"ISBN\": \"0123456789\",\n    \"Condition\": \"Good\",\n    \"Price\": \"1200\",\n    \"Book_Image\": \"1689253106746TEST_BOOK.png\",\n    \"seller\": \"1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"books",
+						"1"
+					]
+				},
+				"description": "This Request is to view all the books that are present in the database. It will Say No book found if there is no books in the database."
+			},
+			"response": [
+				{
+					"name": "View All Books Output",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"books"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"3f-+tlaG7Vwnu1O8YsNNfOV9juOf7c\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 15 Jun 2023 06:59:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Name\": \"Java Simplica\",\n    \"ICBN\": 9781449393854,\n    \"Price\": 30\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/books/update_book_info/upload_book_image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "myfile",
+							"type": "file",
+							"src": "/C:/Users/ASUS/Desktop/TEST_BOOK.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/seller/books/update_book_info/upload_book_image",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"books",
+						"update_book_info",
+						"upload_book_image"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Upload Book Image",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "myfile",
+									"type": "file",
+									"src": "/C:/Users/ASUS/Desktop/TEST_BOOK.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/seller/books/update_book_info/upload_book_image",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"books",
+								"update_book_info",
+								"upload_book_image"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"64-HLHDlEhQuuXuLv3Rv9KzHmFIFHQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 17 Jun 2023 09:31:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Id\": 1,\n    \"Name\": \"Java Simplica\",\n    \"ICBN\": 9781449393854,\n    \"Price\": 30,\n    \"Image\": \"1686994285062TEST_BOOK.png\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/book/book_image",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/book/book_image/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"book",
+						"book_image",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/books/search_books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/books/search_books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"books",
+						"search_books",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Book Output",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Name\": \"java simplica\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/books/search_books?Name=Java Simplica",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"books",
+								"search_books"
+							],
+							"query": [
+								{
+									"key": "Name",
+									"value": "Java Simplica"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-Ipe0kizDFS50TVZWvvW76LuycGQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 15 Jun 2023 07:30:39 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Book Name Found ! The Name is = Java Simplica"
+				}
+			]
+		},
+		{
+			"name": "seller/books/update_book_info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Book_ID\": 1,\r\n    \"Title\": \"Java Simplica\",\r\n    \"Author\": \"Sudipta Kumar Das\",\r\n    \"ISBN\": \"0123456789\",\r\n    \"Condition\": \"Old\",\r\n    \"Price\": \"1200\",\r\n    \"Book_Image\": \"Updated.png\",\r\n    \"seller\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/books/update_book_info/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"books",
+						"update_book_info",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Book Info Output",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Book_ID\": 1,\r\n    \"Title\": \"Latex\",\r\n    \"Author\": \"Sudipta Kumar Das\",\r\n    \"ISBN\": \"0123456789\",\r\n    \"Condition\": \"Good\",\r\n    \"Price\": 1000,\r\n    \"Book_Image\":\"temp_Book.png\",\r\n    \"Seller_ID\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/books/update_book_info/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"books",
+								"update_book_info",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "153"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"99-Qoon2NMzcSZ3oc+zpxdkuWZS874\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Jun 2023 13:02:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Book_ID\": 1,\n    \"Title\": \"Latex\",\n    \"Author\": \"Sudipta Kumar Das\",\n    \"ISBN\": \"0123456789\",\n    \"Condition\": \"Good\",\n    \"Price\": 1000,\n    \"Book_Image\": \"temp_Book.png\",\n    \"Seller_ID\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/books/delete_books",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/books/delete_books/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"books",
+						"delete_books",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Book Output",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/books/delete_books/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"books",
+								"delete_books",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-5jP2tgkNILfVWbN7MzmZb4SecYM\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 15 Jun 2023 14:17:58 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Book id = 1 And the Book Deleted Successfully"
+				}
+			]
+		},
+		{
+			"name": "seller/feedback/send_feedback",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Feedback_ID\":0,\r\n    \"Comment\": \"Make the Transaction Procedure Fast\",\r\n    \"Date\": \"\",\r\n    \"Sender_ID\":1,\r\n    \"Receiver_ID\": 2,\r\n    \"Receiver_Type\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/feedbacks/send_feedback",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"feedbacks",
+						"send_feedback"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Send Feedback to Admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Feedback_ID\":1,\r\n    \"Comment\": \"Make the Transaction Procedure Fast\",\r\n    \"Date\": \"\",\r\n    \"Sender_ID\":1,\r\n    \"Receiver_ID\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/feedbacks/send_feedback",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"feedbacks",
+								"send_feedback"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7d-Ppv20tx3J43mXDqMJuw+I83W24Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Jun 2023 13:29:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Feedback_ID\": 1,\n    \"Comment\": \"Make the Transaction Procedure Fast\",\n    \"Date\": \"06/22/2023, 19:29:54\",\n    \"Sender_ID\": 1,\n    \"Receiver_ID\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/feedbacks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/feedbacks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"feedbacks"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "View Customer Feedbacks",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/feedbacks",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"feedbacks"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "125"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7d-Ppv20tx3J43mXDqMJuw+I83W24Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Jun 2023 13:35:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Feedback_ID\": 1,\n    \"Comment\": \"Make the Transaction Procedure Fast\",\n    \"Date\": \"06/22/2023, 19:29:54\",\n    \"Sender_ID\": 1,\n    \"Receiver_ID\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/logout/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"logout",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Seller Logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/logout/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"logout",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "52"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"34-QCRD1TfJVfECKS2B0nOqvsNY83Y\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 15 Jun 2023 17:22:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Seller id = 1 And the Seller Logged Out Successfully"
+				}
+			]
+		},
+		{
+			"name": "profile/delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/profile/delete_profile/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"delete_profile",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Seller Profile Output",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/profile/delete_profile/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"delete_profile",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-N082MmOpTg9JuLVP/yT/IuX8m88\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 16 Jun 2023 07:29:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Seller id = 1 And the Seller Profile Deleted Successfully"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/add_address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Address_ID\":0,\r\n    \"Street\": \"Baitul Mamumr Mosque Road\",\r\n    \"Building\": \"78/4\",\r\n    \"City\": \"Dhaka\",\r\n    \"Country\": \"Bangladesh\",\r\n    \"ZIP\": \"1219\",\r\n    \"seller\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/profile/add_address/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"add_address",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Insert Address",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Address_ID\":0,\r\n    \"Street\": \"Baitul Mamumr Mosque Road\",\r\n    \"Building\": \"78/4\",\r\n    \"City\": \"Dhaka\",\r\n    \"Country\": \"Bangladesh\",\r\n    \"ZIP\": \"1219\",\r\n    \"seller\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/profile/add_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"add_address",
+								"1"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "135"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"87-qOnqRnjxprq7Z25w75AP2XytKOQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jul 2023 23:49:20 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Address_ID\": 1,\n    \"Street\": \"Baitul Mamumr Mosque Road\",\n    \"Building\": \"78/4\",\n    \"City\": \"Dhaka\",\n    \"Country\": \"Bangladesh\",\n    \"ZIP\": \"1219\",\n    \"seller\": \"1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/view_address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/profile/view_address/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"view_address",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "View Address",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/profile/view_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"view_address",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "122"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7a-+2vtPn4p2sRsWyG2ngMXvzOksZ8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jul 2023 23:54:01 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Address_ID\": 1,\n    \"Street\": \"Baitul Mamumr Mosque Road\",\n    \"Building\": \"78/4\",\n    \"City\": \"Dhaka\",\n    \"Country\": \"Bangladesh\",\n    \"ZIP\": \"1219\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/update_address",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Address_ID\":0,\r\n    \"Street\": \"Baitul Mamumr Mosque Road\",\r\n    \"Building\": \"78/4\",\r\n    \"City\": \"Grindwald\",\r\n    \"Country\": \"Switzerland\",\r\n    \"ZIP\": \"1219\",\r\n    \"seller\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/seller/profile/update_address/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						"profile",
+						"update_address",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Address",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Address_ID\":0,\r\n    \"Street\": \"Baitul Mamumr Mosque Road\",\r\n    \"Building\": \"78/4\",\r\n    \"City\": \"Grindwald\",\r\n    \"Country\": \"Switzerland\",\r\n    \"ZIP\": \"1219\",\r\n    \"seller\": \"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/seller/profile/update_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"update_address",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7f-JvXQirD4pxOV8wtdi8Wg1zERe6A\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jul 2023 23:57:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Address_ID\": 0,\n    \"Street\": \"Baitul Mamumr Mosque Road\",\n    \"Building\": \"78/4\",\n    \"City\": \"Grindwald\",\n    \"Country\": \"Switzerland\",\n    \"ZIP\": \"1219\"\n}"
+				}
+			]
+		},
+		{
+			"name": "seller/profile/remove_address",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/seller/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"seller",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Address",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/seller/profile/remove_address/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"seller",
+								"profile",
+								"remove_address",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2a-UzkBo8S85PUC9okhyWDvY1WwQr8\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jul 2023 23:59:25 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Success\": \"Address Deleted Successfully\"\n}"
+				}
+			]
+		}
+	]
+}

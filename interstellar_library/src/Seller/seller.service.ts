@@ -3,7 +3,7 @@ https://docs.nestjs.com/providers#services
 */
 
 import { Injectable } from '@nestjs/common';
-import { AddressDTO, BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
+import { BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AddressEntity, BookEntity, FeedbackEntity, SellerEntity } from './seller.entity';
@@ -13,6 +13,7 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class SellerService {
+
     constructor(
         @InjectRepository(SellerEntity) private sellerRepository: Repository<SellerEntity>,
         @InjectRepository(FeedbackEntity) private feedbackRepository: Repository<FeedbackEntity>,
@@ -45,8 +46,7 @@ export class SellerService {
 
 
     async ViewSingleBook(id: number): Promise<BookEntity> {
-        // ! Use Session Here
-        return this.bookRepository.findOneBy({Book_ID: id}); // ! Find =>> where Book_ID:id and Seller_ID:session_id
+        return this.bookRepository.findOneBy({Book_ID: id});
     }
 
     async UpdateBookInfo(b_id:number, updated_data: BookDTO): Promise<BookEntity> {
@@ -135,9 +135,8 @@ export class SellerService {
         return this.sellerRepository.save(seller_info);
     }
 
-    DeleteAccount(id: number): any {
-        this.sellerRepository.delete(id);
-        return {"Success":"Account Deleted Successfully"};
+    async DeleteAccount(id: number): Promise<void> {
+        await this.sellerRepository.delete(id);
     }
 
     async ViewSellerProfile(id: number): Promise<SellerEntity> {
@@ -153,15 +152,24 @@ export class SellerService {
         return this.sellerRepository.findOneBy({Seller_ID: id});
     }
 
-    async Login(seller_info: SellerDTO): Promise<any> {
+    async Login(seller_info: SellerDTO): Promise<SellerEntity> {
         
         // const seller = this.sellerRepository.findOneBy({Email: seller_info.Email, Password: seller_info.Password});
+       
+        // console.log("Service Login promise 1"); // Working
         const saved_seller = await this.sellerRepository.findOneBy({Email: seller_info.Email});
-        const match : boolean = await bcrypt.compare(seller_info.Password, saved_seller.Password);
-        if (match) {
-            return saved_seller;
+        // console.log("Service Login promise 2"); // Working
+        // console.log(saved_seller)
+        if(saved_seller != null){
+            const match : boolean = await bcrypt.compare(seller_info.Password, saved_seller.Password);
+            if (match) {
+                return saved_seller;
+            }else{
+                return null;
+            }
         }
-    return "Email or Password is incorrect";
+        // console.log("Service Login promise 3"); // Working
+        return null;
     }
 
     async UploadSellerImage(id:number,image:string): Promise<SellerEntity> {
@@ -181,29 +189,6 @@ export class SellerService {
         if(current_seller){
             res.sendFile(current_seller.Profile_Picture,{ root: './assets/profile_images' })
         }
-    }
-
-    async AddAddress(id: number, address_info: AddressDTO): Promise<AddressEntity> {
-        // ! Use Session Here
-        return this.addressRepository.save(address_info);
-    }
-
-    RemoveAddress(s_id: number): any {
-        // ! Use Session Here
-        this.addressRepository.delete({ seller: { Seller_ID: s_id } });
-        return {"Success":"Address Deleted Successfully"};
-    }
-
-    async UpdateAddressInfo(s_id:number, updated_data: AddressDTO): Promise<AddressDTO> {
-        // ! PROBLEM
-        await this.addressRepository.update({ seller: { Seller_ID: s_id } }, updated_data); // Where to Update , Updated Data
-        return this.addressRepository.findOneBy({ seller: { Seller_ID: s_id } });
-
-    }
-
-    async ViewAddress(s_id: number): Promise<AddressEntity> {
-        // ! Use Session Here
-        return this.addressRepository.findOneBy({ seller: { Seller_ID: s_id } }); // ! Find =>> where Book_ID:id and Seller_ID:session_id
     }
 
 

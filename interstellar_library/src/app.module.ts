@@ -7,12 +7,11 @@ import { SellerModule } from './Seller/seller.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ModeratorModule } from './moderator/moderator.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import * as session from 'express-session';
+import { ModeratorModule } from './moderator/moderator.module';
 
 @Module({
-  imports: [ModeratorModule, SellerModule, TypeOrmModule.forRoot(
+  imports: [SellerModule, ModeratorModule, CustomerModule, TypeOrmModule.forRoot(
     { type: 'postgres',
     host: 'localhost',
     port: 5432,
@@ -21,8 +20,8 @@ import * as session from 'express-session';
     database: 'Interstellar_Library',
     autoLoadEntities: true,
     synchronize: true,
-    } )],
+    } ),],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

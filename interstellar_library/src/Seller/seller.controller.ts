@@ -2,9 +2,9 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Res, Session, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SellerService } from './seller.service';
-import { AddressDTO, BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
+import { BookDTO, FeedbackDTO, SellerDTO } from './seller.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { MulterError, diskStorage } from "multer";
 // import multer from 'multer';
@@ -140,6 +140,7 @@ export class SellerController {
     }
 
     // * Feature 11 : View Seller Profile
+    // TODO: There is a new Term Address is added in seller Table. How to handle it while Signup?
     @Post('/signup')
     @UsePipes(new ValidationPipe())
     Signup(@Body() seller_info: SellerDTO): object{
@@ -154,7 +155,8 @@ export class SellerController {
 
     // * Feature 13 : View Seller Profile
     @Get('/profile/:id')
-    ViewSellerProfile(@Param('id', ParseIntPipe) id:number): object{
+    ViewSellerProfile(@Param('id', ParseIntPipe) id:number, @Session() session): object{
+        console.log(session.Seller_ID);
         return this.sellerService.ViewSellerProfile(id);
     }
 
@@ -168,8 +170,17 @@ export class SellerController {
     // * Feature 15 : Login
     @Post('/login')
     // @UsePipes(new ValidationPipe())
-    Login(@Body() seller_info: SellerDTO): object{
-        return this.sellerService.Login(seller_info);
+    async Login(@Body() seller_info: SellerDTO, @Session() session) : Promise<any>{
+        // return this.sellerService.Login(seller_info);
+        const decision = await this.sellerService.Login(seller_info);
+        // console.log("Controller Login"); // Working
+        // console.log(decision); // Working
+        if(decision != null){
+            session.Seller_Email = seller_info.Email;
+            // console.log(session.Seller_Email); // Working
+            return true;
+        }
+        return false;
     }
 
     // * Feature 16 : Upload & Update Seller Image
@@ -205,31 +216,10 @@ export class SellerController {
         return this.sellerService.getSellerImages(name,res);
     }
 
-    // * Feature 18 : Add Address
-    @Post('/profile/add_address/:id')
-    @UsePipes(new ValidationPipe())
-    AddAddress(@Param('id', ParseIntPipe) id:number, @Body() address_info:AddressDTO): object{
-        return this.sellerService.AddAddress(id,address_info);
-    }
 
-    // * Feature 19 : Remove Address
-    @Delete('/profile/remove_address/:id')
-    RemoveAddress(@Param('id', ParseIntPipe) id:number): object{
-        return this.sellerService.RemoveAddress(id);
-    }
+    
 
-    // * Feature 20 : Update Address
-    @Put('/profile/update_address/:id')
-    @UsePipes(new ValidationPipe())
-    UpdateAddress(@Param('id', ParseIntPipe) id:number, @Body() updated_data:AddressDTO): object{
-        return this.sellerService.UpdateAddressInfo(id,updated_data);
-    }
-
-    // * Feature 21 : View Address
-    @Get('/profile/view_address/:id')
-    ViewAddress(@Param('id', ParseIntPipe) id:number): object{
-        return this.sellerService.ViewAddress(id);
-    }
+    
 
 }
 
