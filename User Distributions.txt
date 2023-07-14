@@ -1,6 +1,0 @@
-Project Name : Interstellar Library
-====================================
-Seller => Sudipta
-Customer => Samrat
-Admin => Mahmud
-Moderator => Mohit
